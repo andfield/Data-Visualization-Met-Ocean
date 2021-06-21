@@ -43,7 +43,7 @@ function App() {
             style={{ margin: "5px" }}
             // onClick={() => setType("static")}
           >
-            Static Values from CsV and json
+            Static Values from CSV and json
           </Button>
         </ButtonContainer>
       </Container>
