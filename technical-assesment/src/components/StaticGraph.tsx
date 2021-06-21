@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 
 //Victory imports
 import {
-  VictoryAxis,
   VictoryBrushContainer,
   VictoryChart,
   VictoryLine,
