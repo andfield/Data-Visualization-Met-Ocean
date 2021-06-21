@@ -16,7 +16,6 @@ import { merge } from "./utils/mergeData";
 import DynamicGraph from "./components/DynamicGraph";
 import StaticGraph from "./components/StaticGraph";
 
-
 function App() {
   //State to store type of graph static / dynamic
   const [type, setType] = useState<string>("dynamic");
@@ -113,6 +112,14 @@ function App() {
             <StaticGraph />
           </>
         )}
+
+        <p style={{ marginTop: "10px", color: '#606061'}}>
+          <span style={{ fontWeight: "bold" }}>**Features**</span>{" "}
+          <ul style={{listStyleType: 'none'}}>
+          <li>The Top Graph has a zoomable x-axis user can zoom in to see fine details.</li>
+          <li>The Bottom Graph acts as a slider for top graph. User can control top graphs zoom and axis using this.</li>
+          </ul>
+        </p>
       </Content>
     </MainContainer>
   );
