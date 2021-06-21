@@ -1,7 +1,6 @@
 //React imports
 import React from "react";
 import { useState, useEffect } from "react";
-
 // Design libraries and styling imports.
 import styled from "styled-components";
 import { Select, Avatar, Button } from "antd";
@@ -11,11 +10,35 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import "antd/dist/antd.css";
-
+//utils import
+import { merge } from "./utils/mergeData";
 //Component imports
 import DynamicGraph from "./components/DynamicGraph";
 
+
 function App() {
+  //State to store type of graph static / dynamic
+  const [type, setType] = useState<string>("dynamic");
+
+  //State to get user input default set to keys[0]
+  const [userInput, setUserInput] = useState(
+    "sea_surface_wave_significant_height"
+  );
+
+  //State to store all the keys.
+  const [keys, setKeys] = useState<string[]>();
+
+  //Destructure Option from antd select
+  const { Option } = Select;
+
+  //Effect to get all the keys.
+  useEffect(() => {
+    async function getKeys() {
+      setKeys((await merge()).keys);
+    }
+    getKeys();
+  }, []);
+
   return (
     <MainContainer className="App">
       {/* Sidebar */}
@@ -37,14 +60,14 @@ function App() {
           <Button
             type="primary"
             style={{ margin: "5px" }}
-            // onClick={() => setType("dynamic")}
+            onClick={() => setType("dynamic")}
           >
             Dynamic Y Axis plot
           </Button>
           <Button
             type="primary"
             style={{ margin: "5px" }}
-            // onClick={() => setType("static")}
+            onClick={() => setType("static")}
           >
             Static Values from CSV and json
           </Button>
@@ -53,10 +76,43 @@ function App() {
 
       {/* Dynamic Graph content */}
       <Content>
-        <DynamicGraph yAxis={"sea_surface_wave_significant_height"} />
+        {/* If type is dynamic display the selector and dynamic graph else display static graph. */}
+        {type === "dynamic" ? (
+          <>
+            <h1>Select data to plot on y axis</h1>
+            {keys ? (
+              <Select
+                defaultValue={keys[0]}
+                style={{ width: 500 }}
+                onChange={(item) => setUserInput(item)}
+              >
+                {keys?.map((item) => (
+                  <Option value={item}>{item}</Option>
+                ))}
+              </Select>
+            ) : (
+              "Loading...."
+            )}
+            <DynamicGraph yAxis={userInput} />
+          </>
+        ) : (
+          <>
+            <h1>
+              Graph plots{" "}
+              <span style={{ fontWeight: "bold" }}>
+                Sea_Surface_Wave_Significant_Height
+              </span>{" "}
+              on X-axis and
+              <span style={{ fontWeight: "bold" }}>
+                {" "}
+                Surface_Sea_Water_Speed
+              </span>{" "}
+              on y-axis
+            </h1>
+            {/* <StaticGraph /> */}
+          </>
+        )}
       </Content>
-
-
     </MainContainer>
   );
 }
