@@ -30,3 +30,42 @@ export async function getData(yAxis: string) {
     //Return the formatted array.
     return data;
 }
+
+//Function which takes 2 arguments for x and y axis and returns formatted data back.
+export async function getStaticData(x: string, y: string) {
+
+    var data: { x: number; y: number }[] = [];
+
+    const mergedData = await merge();
+
+    mergedData.mergedMap.forEach((item, index) => {
+        //temp variables
+        var tempx = 0;
+        var tempy = 0;
+    
+    //Check if current item has x val.
+      if (
+            item[x] !== "null" &&
+            item[x] !== null &&
+            item[x] !== undefined
+        ) {
+            //save the current x val
+            tempx = +item[x]
+        }
+    //Check if current item has y val.
+        if (item[y] !== "null" &&
+            item[y] !== null &&
+            item[y] !== undefined) 
+        {
+            //save current y val
+            tempy = +item[y]
+        }
+
+        //push the data to a object array
+        data.push({x: tempx, y: tempy})
+    })
+
+    //return the formatted data.
+    return data
+
+}

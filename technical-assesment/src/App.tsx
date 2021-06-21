@@ -14,6 +14,7 @@ import "antd/dist/antd.css";
 import { merge } from "./utils/mergeData";
 //Component imports
 import DynamicGraph from "./components/DynamicGraph";
+import StaticGraph from "./components/StaticGraph";
 
 
 function App() {
@@ -109,7 +110,7 @@ function App() {
               </span>{" "}
               on y-axis
             </h1>
-            {/* <StaticGraph /> */}
+            <StaticGraph />
           </>
         )}
       </Content>
