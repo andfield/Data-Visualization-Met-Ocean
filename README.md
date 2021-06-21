@@ -13,7 +13,7 @@ This project visualises data from .CSV file and .Json file. It combines the two 
 Project is created with:
 * React: 17.0.2
 * Typescript: 4.3.4
-* Victory chrats: 35.8.6
+* Victory charts: 35.8.6
 * Ant design: 4.16.3
 * styled-components: 5.3
 	
