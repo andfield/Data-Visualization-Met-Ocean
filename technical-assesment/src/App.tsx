@@ -53,7 +53,7 @@ function App() {
 
       {/* Dynamic Graph content */}
       <Content>
-        <DynamicGraph />
+        <DynamicGraph yAxis={"sea_surface_wave_significant_height"} />
       </Content>
 
 

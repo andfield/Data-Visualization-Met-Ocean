@@ -55,7 +55,7 @@ export async function merge() {
     var map = new Map(Object.entries(mergedData))
 
     return {
-        mergerdMap: map,
+        mergedMap: map,
         keys: allKeys
     }
 }
