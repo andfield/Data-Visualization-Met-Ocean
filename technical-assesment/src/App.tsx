@@ -12,6 +12,9 @@ import {
 } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
+//Component imports
+import DynamicGraph from "./components/DynamicGraph";
+
 function App() {
   return (
     <MainContainer className="App">
@@ -49,6 +52,11 @@ function App() {
       </Container>
 
       {/* Dynamic Graph content */}
+      <Content>
+        <DynamicGraph />
+      </Content>
+
+
     </MainContainer>
   );
 }
@@ -99,4 +107,23 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+`;
+
+//Graph Container
+const Content = styled.div`
+  flex: 1;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  background-color: #a1b9c5;
+  overflow: scroll;
+  height: 100vh;
+  //Hide the scroll-bar
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  h1 {
+    padding: 30px;
+  }
 `;
